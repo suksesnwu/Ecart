@@ -30,6 +30,7 @@ namespace Ecart_Web
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")));
+            services.AddHttpContextAccessor();
             services.AddSession(Options =>
             {
                 Options.IdleTimeout = TimeSpan.FromMinutes(10);

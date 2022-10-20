@@ -30,6 +30,12 @@ namespace Ecart_Web
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")));
+            services.AddSession(Options =>
+            {
+                Options.IdleTimeout = TimeSpan.FromMinutes(10);
+                Options.Cookie.HttpOnly = true;
+                Options.Cookie.IsEssential = true;
+            });
             services.AddControllersWithViews();
         }
 
@@ -52,7 +58,7 @@ namespace Ecart_Web
             app.UseRouting();
             //app.UseAuthentication();
             app.UseAuthorization();
-            //app.UseSession();
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 //endpoints.MapRazorPages();

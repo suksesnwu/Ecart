@@ -29,28 +29,11 @@ namespace Ecart_Web.Controllers
         {
             IEnumerable<Product> objList = _db.Product.Include(u => u.Category).Include(u => u.ApplicationType);
 
-            //foreach (var obj in objlist)
-            //{
-            //    obj.category = _db.category.firstordefault(u => u.id == obj.categoryid);
-            //    obj.applicationtype = _db.applicationtype.firstordefault(u => u.id == obj.applicationtypeid);
-            //};
-
             return View(objList);
         }
 
         public IActionResult Upsert(int? id)
         {
-
-            //IEnumerable<SelectListItem> CategoryDropDown = _db.Category.Select(i => new SelectListItem
-            //{
-            //    Text = i.Name,
-            //    Value = i.Id.ToString()
-            //});
-
-            ////ViewBag.CategoryDropDown = CategoryDropDown;
-            //ViewData["CategoryDropDown"] = CategoryDropDown;
-
-            //Product product = new Product();
 
             ProductVM productVM = new ProductVM()
             {

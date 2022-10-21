@@ -119,10 +119,13 @@ namespace Ecart_Web.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
+            // add roles to database
             if(!await _roleManager.RoleExistsAsync(WC.AdminRole))
             {
                 await _roleManager.CreateAsync(new IdentityRole(WC.AdminRole));
+                await _roleManager.CreateAsync(new IdentityRole(WC.ManagerRole));
                 await _roleManager.CreateAsync(new IdentityRole(WC.CustomerRole));
+
             }
 
             ReturnUrl = returnUrl;
@@ -145,13 +148,12 @@ namespace Ecart_Web.Areas.Identity.Pages.Account
                 {
                     if (User.IsInRole(WC.AdminRole))
                     {
-                        await _userManager.AddToRoleAsync(user, WC.CustomerRole);
+                        // an admin has logged in and they try to create a new user
+                        await _userManager.AddToRoleAsync(user, WC.ManagerRole);
                     }
                     else
                     {
-                        // an admin has logged in and they try to create a new user
-                        await _userManager.AddToRoleAsync(user, WC.AdminRole);
-
+                        await _userManager.AddToRoleAsync(user, WC.CustomerRole);
                     }
 
                     _logger.LogInformation("User created a new account with password.");

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Ecart_Web.Data;
+using Ecart_Web.Models.ViewModels;
+using Ecart_Web.Models;
+using Ecart_Web;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +18,7 @@ using Ecart_Web.Models.ViewModels;
 
 namespace Ecart_Web.Controllers
 {
+    //[Authorize(Roles = WC.AdminRole)]
     public class ProductController : Controller
     {
         private readonly ApplicationDbContext _db;
@@ -29,11 +34,30 @@ namespace Ecart_Web.Controllers
         {
             IEnumerable<Product> objList = _db.Product.Include(u => u.Category).Include(u => u.ApplicationType);
 
+            //foreach(var obj in objList)
+            //{
+            //    obj.Category = _db.Category.FirstOrDefault(u => u.Id == obj.CategoryId);
+            //    obj.ApplicationType = _db.ApplicationType.FirstOrDefault(u => u.Id == obj.ApplicationTypeId);
+            //};
+
             return View(objList);
         }
 
+
+        //GET - UPSERT
         public IActionResult Upsert(int? id)
         {
+
+            //IEnumerable<SelectListItem> CategoryDropDown = _db.Category.Select(i => new SelectListItem
+            //{
+            //    Text = i.Name,
+            //    Value = i.Id.ToString()
+            //});
+
+            ////ViewBag.CategoryDropDown = CategoryDropDown;
+            //ViewData["CategoryDropDown"] = CategoryDropDown;
+
+            //Product product = new Product();
 
             ProductVM productVM = new ProductVM()
             {
@@ -72,8 +96,8 @@ namespace Ecart_Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Upsert(ProductVM productVM)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 var files = HttpContext.Request.Form.Files;
                 string webRootPath = _webHostEnvironment.WebRootPath;
 
@@ -92,6 +116,9 @@ namespace Ecart_Web.Controllers
                     productVM.Product.Image = fileName + extension;
 
                     _db.Product.Add(productVM.Product);
+
+                    //    _db.SaveChanges();
+                    //return RedirectToAction("Index");
                 }
                 else
                 {
@@ -128,7 +155,7 @@ namespace Ecart_Web.Controllers
 
                 _db.SaveChanges();
                 return RedirectToAction("Index");
-            }
+            //}
             productVM.CategorySelectList = _db.Category.Select(i => new SelectListItem
             {
                 Text = i.Name,
@@ -142,6 +169,8 @@ namespace Ecart_Web.Controllers
             return View(productVM);
 
         }
+
+
 
         //GET - DELETE
         public IActionResult Delete(int? id)
@@ -183,6 +212,9 @@ namespace Ecart_Web.Controllers
             _db.Product.Remove(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
+
+
         }
+
     }
 }

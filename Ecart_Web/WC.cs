@@ -11,6 +11,7 @@ namespace Ecart_Web
         public static string SessionCart = "ShoppingCartSession";
 
         public static string AdminRole = "Admin";
+        public static string ManagerRole = "Manager";
         public static string CustomerRole = "Customer";
 
         public static string EmailAdmin = "iamsuccess.k@yahoo.com";

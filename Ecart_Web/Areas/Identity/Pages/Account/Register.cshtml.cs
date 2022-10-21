@@ -143,7 +143,16 @@ namespace Ecart_Web.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, WC.AdminRole);
+                    if (User.IsInRole(WC.AdminRole))
+                    {
+                        await _userManager.AddToRoleAsync(user, WC.CustomerRole);
+                    }
+                    else
+                    {
+                        // an admin has logged in and they try to create a new user
+                        await _userManager.AddToRoleAsync(user, WC.AdminRole);
+
+                    }
 
                     _logger.LogInformation("User created a new account with password.");
 

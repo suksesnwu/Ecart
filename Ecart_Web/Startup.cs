@@ -30,6 +30,9 @@ namespace Ecart_Web
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")));
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddDefaultTokenProviders().AddDefaultUI()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddHttpContextAccessor();
             services.AddSession(Options =>
             {
@@ -57,7 +60,7 @@ namespace Ecart_Web
             app.UseStaticFiles();
 
             app.UseRouting();
-            //app.UseAuthentication();
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseSession();
             app.UseEndpoints(endpoints =>

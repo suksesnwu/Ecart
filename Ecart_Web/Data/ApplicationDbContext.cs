@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Ecart_Web.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Ecart_Web.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {

@@ -143,7 +143,7 @@ namespace Ecart_Web.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-
+                    await _userManager.AddToRoleAsync(user, WC.AdminRole);
 
                     _logger.LogInformation("User created a new account with password.");
 

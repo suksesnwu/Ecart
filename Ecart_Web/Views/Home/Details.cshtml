@@ -3,7 +3,132 @@
 <div class="">
     <form method="post">
         <input asp-for="@Model.Product.Id" hidden />
-        <div class="container backgroundWhite pt-4">
+        <div class="page-product backgroundWhite pt-4">
+            <div class="container-lg">
+                <!--Product details-->
+                <div class="product-details">
+                    <div class="row">
+                        <div class="product-image col-lg-7 d-flex flex-nowrap align-items-start">
+                            <img src="@WC.ImagePath@Model.Product.Image" width="100%" class="rounded" />
+                        </div>
+                        <div class="col-lg-5 mt-3 mt-lg-0">
+                            <div class="product-info">
+                                <div class="row g-0 mb-2">
+                                    <div class="col-12">
+                                        <h1 class="name mb-0">
+                                            @Model.Product.Name
+                                        </h1>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row g-0 mb-0 align-items-end row-padding-sm">
+                                            <div class="col-auto">
+                                                <h4 class="price d-inline-block">@((Model.Product.Price).ToString("c"))</h4>
+                                            </div>
+                                            <div class="col col col-md-auto text-right">
+                                                <button class="down" disabled="disabled">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                                @*<input asp-for="@Model.Product.Quantity"  />*@
+
+                                                <input type="text" disabled="disabled" placeholder="1" class="form-control" />
+                                                <button class="up" >
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="btn btn-wishlist btn-loading">
+                                                    <i class="far fa-heart"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row mt-3 text-center product-chekout-buttons justify-content-center">
+                                    <div class="row">
+                                        <div class="col-6 my-1">
+                                            @if (Model.ExistsInCart)
+                                            {
+                                                <a asp-action="RemoveFromCart" asp-route-id="@Model.Product.Id" class="btn btn-warning btn-loading form-control btn-block">Remove from Cart</a>
+                                            }
+                                            else
+                                            {
+                                                <button type="submit" asp-route-id="@Model.Product.Id" class="btn btn-black btn-loading form-control btn-block">Add to Cart</button>
+                                            }
+                                        </div>
+                                        <div class="col-6 my-1">
+                                            <a asp-action="Cart" asp-route-id="@Model.Product.Id" class="btn btn-primary btn-loading form-control btn-block">Buy now</a>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-12 my-3">
+                                        <div class="mb-3">
+                                            <div class="share-links d-inline-block justify-content-between">
+                                                <a target="_blank" href="send">
+                                                    <i class="fab fa-whatsapp"></i>
+                                                </a>
+                                                <a target="_blank" href="send">
+                                                    <i class="fab fa-facebook"></i>
+                                                </a>
+                                                <a target="_blank" href="send">
+                                                    <i class="fab fa-twitter"></i>
+                                                </a>
+                                                <a target="_blank" href="send">
+                                                    <i class="fab fa-envelope"></i>
+                                                </a>
+                                                <button class="copy-link">
+                                                    <i class="fas fa-link"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>
+                                    <strong> Category: </strong>
+                                    <span>@Model.Product.Category.Name</span>
+                                    <strong> Brand: </strong>
+                                    <span>@Model.Product.ApplicationType.Name</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tabs">
+                        <div class="">
+                            <ul role="tablist" class="nav nav-tabs custom-tabs mt-3">
+                                <li role="presentation" class="nav-item">
+                                    <button role="tab" data-bs-toggle="tab" data-bs-target="#description" aria-selected="true" href="#" target="_self" class="nav-link active" id="description-tab" aria-controls="description" aria-selected="true">Description</button>
+
+                                </li>
+                                <li role="presentation" class="nav-item">
+                                    <button role="tab" data-bs-toggle="tab" data-bs-target="#reviews" aria-selected="false" href="#" target="_self" class="nav-link" id="reviews-tab" aria-controls="reviews">Reviews</button>
+
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content mt-3" id="myTabContent">
+                            <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="decription-tab">
+                                <p class="text-secondary">@Html.Raw(Model.Product.Description) </p>
+                            </div>
+                            <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                                <p class="text-secondary">@Html.Raw(Model.Product.Description) </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!--Related products-->
+                <div class="section-wrapper">
+
+                </div>
+                
+            </div>
+
+        </div>
+    </form>
+</div>
+        @*<div class="product-details">
             <div class="card" style="border:1px solid #000000; ">
                 <div class="card-header bg-dark text-light ml-0 " style="border-radius: 0px;">
                     <div class="col-12 col-md-6">
@@ -52,6 +177,4 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
-</div>
+        </div>*@

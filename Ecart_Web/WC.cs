@@ -7,13 +7,17 @@ namespace Ecart_Web
 {
     public static class WC
     {
-        public static string ImagePath = @"\images\product\";
-        public static string SessionCart = "ShoppingCartSession";
+        public const string ImagePath = @"\images\product\";
+        public const string SessionCart = "ShoppingCartSession";
 
-        public static string AdminRole = "Admin";
-        public static string ManagerRole = "Manager";
-        public static string CustomerRole = "Customer";
+        public const string AdminRole = "Admin";
+        public const string ManagerRole = "Manager";
 
-        public static string EmailAdmin = "iamsuccess.k@yahoo.com";
+        // combine the roles of admins and managers
+        public const string AdminOrManager = AdminRole + "," + ManagerRole;
+
+        public const string CustomerRole = "Customer";
+
+        public const string EmailAdmin = "katlehomokhethi1@proton.me";
     }
 }

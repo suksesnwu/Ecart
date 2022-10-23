@@ -148,7 +148,7 @@ namespace Ecart_Web.Areas.Identity.Pages.Account
                 {
                     if (User.IsInRole(WC.AdminRole))
                     {
-                        // an admin has logged in and they try to create a new user
+                        // an admin has logged in and they try to create a new admin
                         await _userManager.AddToRoleAsync(user, WC.ManagerRole);
                     }
                     else

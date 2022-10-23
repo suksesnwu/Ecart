@@ -12,9 +12,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Ecart_Web.Data;
-using Ecart_Web.Models;
-using Ecart_Web.Models.ViewModels;
 
 namespace Ecart_Web.Controllers
 {
@@ -45,6 +42,7 @@ namespace Ecart_Web.Controllers
 
 
         //GET - UPSERT
+        [Authorize(Roles = WC.AdminOrManager)]
         public IActionResult Upsert(int? id)
         {
 
@@ -92,6 +90,7 @@ namespace Ecart_Web.Controllers
 
 
         //POST - UPSERT
+        [Authorize(Roles = WC.AdminOrManager)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Upsert(ProductVM productVM)
@@ -170,9 +169,8 @@ namespace Ecart_Web.Controllers
 
         }
 
-
-
         //GET - DELETE
+        [Authorize(Roles = WC.AdminRole)]
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)
@@ -190,6 +188,7 @@ namespace Ecart_Web.Controllers
         }
 
         //POST - DELETE
+        [Authorize(Roles = WC.AdminRole)]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
@@ -212,7 +211,6 @@ namespace Ecart_Web.Controllers
             _db.Product.Remove(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
-
 
         }
 

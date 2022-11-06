@@ -1,6 +1,6 @@
 ﻿@model Ecart_Web.Models.ViewModels.HomeVM
 
-<div class="container">
+<div class="home">
     <div class="text-center">
         <button class="btn btn-dark filter-button" data-filter="all">All</button>
         @foreach (var obj in Model.Categories)
@@ -10,8 +10,7 @@
             </button>
         }
     </div>
-    <br />
-    <div class="row">
+    <div class="row grid-products">
         @foreach (var prod in Model.Products)
         {
             <partial name="_IndividualProductCard" model="prod" />

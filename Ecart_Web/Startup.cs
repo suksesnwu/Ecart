@@ -38,6 +38,8 @@ namespace Ecart_Web
 
             services.AddTransient<IEmailSender, EmailSender>();
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddDistributedMemoryCache();
             services.AddHttpContextAccessor();
             services.AddSession(Options =>
@@ -47,6 +49,35 @@ namespace Ecart_Web
                 Options.Cookie.IsEssential = true;
             });
             services.AddControllersWithViews();
+
+            // external login providers
+   //         builder.Services.AddAuthentication()
+   //.AddGoogle(options =>
+   //{
+   //    IConfigurationSection googleAuthNSection =
+   //    config.GetSection("Authentication:Google");
+   //    options.ClientId = googleAuthNSection["ClientId"];
+   //    options.ClientSecret = googleAuthNSection["ClientSecret"];
+   //})
+   //.AddFacebook(options =>
+   //{
+   //    IConfigurationSection FBAuthNSection =
+   //    config.GetSection("Authentication:FB");
+   //    options.ClientId = FBAuthNSection["ClientId"];
+   //    options.ClientSecret = FBAuthNSection["ClientSecret"];
+   //})
+   //.AddMicrosoftAccount(microsoftOptions =>
+   //{
+   //    microsoftOptions.ClientId = config["Authentication:Microsoft:ClientId"];
+   //    microsoftOptions.ClientSecret = config["Authentication:Microsoft:ClientSecret"];
+   //})
+   //.AddTwitter(twitterOptions =>
+   //{
+   //    twitterOptions.ConsumerKey = config["Authentication:Twitter:ConsumerAPIKey"];
+   //    twitterOptions.ConsumerSecret = config["Authentication:Twitter:ConsumerSecret"];
+   //    twitterOptions.RetrieveUserDetails = true;
+   //});
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

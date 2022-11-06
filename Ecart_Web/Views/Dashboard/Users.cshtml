@@ -1,0 +1,71 @@
+﻿@model Ecart_Web.Models.ViewModels.UsersVM
+
+
+@{
+    ViewData["Title"] = "Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-3 mb-4">
+    <div class="col-lg-9 mt-4 mt-lg-0">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
+                    <table class="table manage-candidates-top mb-0">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th class="text-center">Email</th>
+                                <th class="text-center">Roles</th>
+                                <th class="action text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Roles != null && Model.Roles.Count > 0)
+                            {
+                                foreach (var user in Model.Roles)
+                                {
+                                    <tr class="candidates-list">
+                                        <td>
+                                            <input typeof="hidden" value="@user.Id" />
+                                            @user./*FullName*/
+                                        </td>
+                                        <td>
+                                            @*@user.Email*@
+                                        </td>
+                                        <td>
+                                            @*@user.Roles.Count*@
+                                        </td>
+                                        <td>
+                                            <ul class="list-unstyled mb-0 d-flex justify-content-end">
+                                                <li><a href="#" class="text-primary" data-toggle="tooltip" title="" data-original-title="view"><i class="far fa-eye"></i></a></li>
+                                                <li><a href="#" class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a></li>
+                                                <li><a href="#" class="text-danger" data-toggle="tooltip" title="" data-original-title="Delete"><i class="far fa-trash-alt"></i></a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <p>No users exist</p>
+                            }
+                        </tbody>
+
+                    </table>
+                    <div class="text-center mt-3 mt-sm-3">
+                        <ul class="pagination justify-content-center mb-0">
+                            <li class="page-item disabled"> <span class="page-link">Prev</span> </li>
+                            <li class="page-item active" aria-current="page"><span class="page-link">1 </span> <span class="sr-only">(current)</span></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">...</a></li>
+                            <li class="page-item"><a class="page-link" href="#">25</a></li>
+                            <li class="page-item"> <a class="page-link" href="#">Next</a> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

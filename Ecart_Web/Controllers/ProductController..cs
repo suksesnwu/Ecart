@@ -26,6 +26,7 @@ namespace Ecart_Web.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
+        [Authorize(Roles = WC.AdminOrManager)]
 
         public IActionResult Index()
         {

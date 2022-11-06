@@ -142,7 +142,7 @@
 @section Scripts{
 
     @{
-        <partial name="_ValidationScriptsPartial" />
+    <partial name="_ValidationScriptsPartial" />
     }
     <script>
         $(document).ready(function () {
@@ -151,13 +151,27 @@
             });
         });
         function validateInput() {
-            if (document.getElementById("uploadBox").value == "") {
+            let accountUserImage = document.getElementById("uploadBox");
+
+            if (accountUserImage.value == "") {
                 Swal.fire(
                     'Error!',
                     'Please upload an Image!',
                     'error'
                 )
                 return false;
+            }
+            if (accountUserImage) {
+                const resetImage = accountUserImage.src;
+                fileInput.onchange = () => {
+                    if (fileInput.files[0]) {
+                        accountUserImage.src = window.URL.createObjectURL(fileInput.files[0]);
+                    }
+                };
+                resetFileInput.onclick = () => {
+                    fileInput.value = '';
+                    accountUserImage.src = resetImage;
+                };
             }
             return true;
         }

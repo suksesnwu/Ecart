@@ -1,9 +1,12 @@
 ﻿using Ecart_Web.Data;
 using Microsoft.AspNetCore.Mvc;
 using Ecart_Web.Models;
+using Microsoft.AspNetCore.Authorization;
+//using Elchisto_Utility;
 
 namespace Ecart_Web.Controllers
 {
+    [Authorize(Roles = WC.AdminOrManager)]
     public class CategoryController : Controller
     {
         private readonly ApplicationDbContext _db;
@@ -17,6 +20,7 @@ namespace Ecart_Web.Controllers
             IEnumerable<Category> objList = _db.Category;
             return View(objList);
         }
+
 
         //GET - CREATE
         public IActionResult Create()

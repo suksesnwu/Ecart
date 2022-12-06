@@ -1,6 +1,11 @@
 ﻿@model IEnumerable<Ecart_Web.Models.Category>
 
-<div class="container p-3">
+@{
+    ViewData["Title"] = "Categories";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid p-3">
     <div class="row pt-4">
         <div class="col-6">
             <h2 class="text-primary">Category List</h2>

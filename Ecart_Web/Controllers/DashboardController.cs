@@ -6,9 +6,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Ecart_Web.Models;
 using Hangfire.Dashboard;
+using Microsoft.AspNetCore.Authorization;
+//using Elchisto_Utility;
 
 namespace Ecart_Web.Controllers
 {
+    [Authorize(Roles = WC.AdminOrManager)]
     public class DashboardController : Controller
     {
         DashboardService service = new DashboardService();

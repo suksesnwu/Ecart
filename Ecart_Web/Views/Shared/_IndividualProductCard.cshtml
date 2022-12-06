@@ -1,39 +1,35 @@
 ﻿@model Ecart_Web.Models.Product
 
-<div class="col-6 col-sm-4 col-md-3 product-item filter @Model.Category.Name.Replace(' ','_')">
-    <!-- Card-->
-    
-    <div class="product--teaser" style="border:1px solid #222">
-        <div class="btn-group">
-
-        </div>
-        <div class="thumbnail">
-            <div class="product-img d-block">
-                <a asp-action="Details" asp-route-id="@Model.Id" >
-                    <img src="@WC.ImagePath@Model.Image" alt="Card image cap">
-                </a>
+<!-- Grid Card -->
+<div class="col-6 col-md-4 col-lg-3 mb-4 filter @Model.Category.Name.Replace(' ','_')">
+    <div class="col">
+        <div class="card h-100" style="border:1px solid #222">
+            <!-- Image Hover Buttons -->
+            <div class="btn-group">
             </div>
+            <!-- / Image Hover Buttons -->
 
-            <div class="info mt-auto">
+            <div class="">
                 <a asp-action="Details" asp-route-id="@Model.Id">
-                    <p class="product-title">@Model.Name</p>
+
+                    <img class="card-img-top" src="@WC.ImagePath@Model.Image" alt="Card image cap">
                 </a>
-                <div class="col-5"><label class="float-right"><span class="text-info h5">@string.Format("{0:c0}",Model.Price)</span></label> </div>
-            </div>
-
-
-            <div class="card-body p-1 px-3 row">
-                <div class="col-6">
-                    <span class="badge p-2 border w-100" style="background-color:black">@Model.Category.Name</span>
+                <div class="card-body">
+                    <a asp-action="Details" asp-route-id="@Model.Id">
+                        <h5 href="javascript:void(0);" class="ellipsis nametitle">@Model.Name</h5>
+                    </a>
+                    <div class="card-title primary "><span class="h5">@string.Format("{0:c0}",Model.Price)</span></div>
+                    <p class="card-text"><a href="javascript:void(0);" class="card-link">@Model.Category.Name</a>'s Fragnance</p>
+                    <p class="card-text">by <a href="javascript:void(0);" class="card-link">@Model.ApplicationType.Name</a></p>
+                    <p class="card-text">
+                        <small class="text-muted">
+                            @Model.ShortDesc
+                        </small>
+                    </p>
                 </div>
-                <div class="col-6 border-0">
-                    <span class="badge p-2 border w-100" style="background-color:black">@Model.ApplicationType.Name</span>
-                </div>
-                <div class="col-12 pt-2" style="font-size:13px; text-align:justify">
-                    <p> @Model.ShortDesc</p>
-                </div>
-                
             </div>
         </div>
     </div>
+
+
 </div>

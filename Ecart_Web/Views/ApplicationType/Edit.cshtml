@@ -1,5 +1,10 @@
 ﻿@model Ecart_Web.Models.ApplicationType
 
+@{
+    ViewData["Title"] = "Edit Brand";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
 <form method="post">
     <input asp-for="Id" hidden />
     <div class="border p-3">

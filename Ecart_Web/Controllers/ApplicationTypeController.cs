@@ -1,9 +1,13 @@
 ﻿using Ecart_Web.Data;
 using Microsoft.AspNetCore.Mvc;
 using Ecart_Web.Models;
+using Microsoft.AspNetCore.Authorization;
+//using Elchisto_Utility;
+
 
 namespace Ecart_Web.Controllers
 {
+    [Authorize(Roles = WC.AdminOrManager)]
     public class ApplicationTypeController : Controller
     {
         private readonly ApplicationDbContext _db;

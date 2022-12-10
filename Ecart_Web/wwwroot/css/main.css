@@ -1,0 +1,63 @@
+.product-item .btn:hover {
+    color: #D19C97 !important;
+}
+
+.product-image {
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.product-image img {
+    max-width: 100%;
+    transition: 0.3s all ease-in-out;
+}
+
+.product-image:hover img {
+    transform: scale(1.5);
+}
+
+.name {
+    font-size: 16px;
+    line-height: 18px;
+    min-height: 35px;
+    color: #121212;
+    margin: .4rem 0 0;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+}
+
+.name:hover {
+    color: #d90200;
+    text-decoration: underline;
+}
+
+.short_desc {
+    font-size: 12px;
+    line-height: 18px;
+    min-height: 35px;
+    color: #6e6e73;
+    margin: .4rem 0 0;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+}
+
+.site-footer {
+    z-index: 9;
+    background-color: #121212;
+}
+
+.border-top {
+    border-top: 1px solid #e0e0e0 !important;
+}
+
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+    display: block;
+}

@@ -11,17 +11,16 @@
 
             <div class="product-item">
                 <a asp-action="Details" asp-route-id="@Model.Id">
-
-                    <img class="card-img-top" src="@WC.ImagePath@Model.Image" alt="Card image cap">
-                @*</a>*@
-                <div class="card-body">
-                    @*<a asp-action="Details" asp-route-id="@Model.Id">*@
+                    <div class="product-image">
+                        <img src="@WC.ImagePath@Model.Image" alt="Card image">
+                    </div>
+                
+                    <div class="card-body">
                         <h5 href="javascript:void(0);" class="ellipsis name">@Model.Name</h5>
-                    @*</a>*@
-                    <div class="card-title primary "><span class="h5">@string.Format("{0:c0}",Model.Price)</span></div>
-                    <p class="card-text"><a href="javascript:void(0);" class="card-link">@Model.Category.Name</a>'s Fragnance</p>
-                    <p class="card-text">by <a href="javascript:void(0);" class="card-link">@Model.ApplicationType.Name</a></p>
-                    <p class="card-text">
+                        <div class="card-title primary "><span class="h5">@string.Format("{0:c0}",Model.Price)</span></div>
+                        <p class="card-text"><a href="javascript:void(0);" class="card-link">@Model.Category.Name</a>'s Fragnance</p>
+                        <p class="card-text">by <a href="javascript:void(0);" class="card-link">@Model.ApplicationType.Name</a></p>
+                        <p class="card-text">
                         <small class="text-muted short_desc">
                             @Model.ShortDesc
                         </small>
